@@ -7,6 +7,7 @@ const confirmPasswordInput = document.querySelector("#password-confirm-input");
 
 // create reference for buttons.
 const submitBtn = document.querySelector("#submit-btn");
+const resetBtn = document.querySelector("#reset-btn");
 
 // simple email validation
 function validateEmail(email) {
@@ -39,7 +40,7 @@ passwordInput.onkeyup = () => {
 };
 
 confirmPasswordInput.onkeyup = () => {
-  confirmPasswordInput.classList.remove("is-valid");  
+  confirmPasswordInput.classList.remove("is-valid");
   confirmPasswordInput.classList.remove("is-invalid");
 };
 
@@ -84,14 +85,33 @@ submitBtn.onclick = () => {
   }
 
   // validate confirm password
-  if (confirmPasswordInput.value === passwordInput.value && confirmPasswordInput.value.length >= 6) {
+  if (
+    confirmPasswordInput.value === passwordInput.value &&
+    confirmPasswordInput.value.length >= 6
+  ) {
     confirmPasswordInput.classList.add("is-valid");
     isPasswordConfirmOk = true;
   } else {
     confirmPasswordInput.classList.add("is-invalid");
   }
 
-  if (isFirstNameOk && isLastNameOk && isEmailOk && isPasswordOk && isPasswordConfirmOk) alert("Registered successfully");
+  if (
+    isFirstNameOk &&
+    isLastNameOk &&
+    isEmailOk &&
+    isPasswordOk &&
+    isPasswordConfirmOk
+  )
+    alert("Registered successfully");
 };
 
 // add callback function for Reset button.
+resetBtn.onclick = () => {
+  const List_all_input = document.querySelectorAll("input");
+
+  for (let i of List_all_input) {
+    i.value = "";
+    i.classList.remove("is-valid");
+    i.classList.remove("is-invalid");
+  }
+};
